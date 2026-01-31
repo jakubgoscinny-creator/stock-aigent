@@ -259,6 +259,15 @@ h1 {
   margin-top: 18px;
 }
 
+.metric-strip {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(200, 169, 106, 0.2);
+}
+
 .link {
   background: none;
   border: none;
@@ -545,6 +554,10 @@ h2 {
   box-shadow: 0 24px 50px var(--shadow);
 }
 
+.sources-panel {
+  margin-top: 24px;
+}
+
 .cta-form {
   display: flex;
   gap: 12px;
@@ -576,6 +589,10 @@ h2 {
 .muted {
   color: rgba(14, 27, 42, 0.6);
   font-size: 0.9rem;
+}
+
+.small {
+  font-size: 0.75rem;
 }
 
 .reveal {

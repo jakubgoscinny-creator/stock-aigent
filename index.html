@@ -96,6 +96,23 @@
               <span class="muted">Rationale available</span>
               <button class="link">Open report</button>
             </div>
+            <div class="metric-strip">
+              <div>
+                <div class="trust-label">SPY.US close</div>
+                <div class="trust-value" id="metric-us-close">--</div>
+                <div class="muted small" id="metric-us-change">--</div>
+              </div>
+              <div>
+                <div class="trust-label">WIG20 close</div>
+                <div class="trust-value" id="metric-pl-close">--</div>
+                <div class="muted small" id="metric-pl-change">--</div>
+              </div>
+              <div>
+                <div class="trust-label">USD/PLN</div>
+                <div class="trust-value" id="metric-fx-rate">--</div>
+                <div class="muted small" id="metric-fx-date">--</div>
+              </div>
+            </div>
           </div>
           <div class="hero-strip reveal">
             <div>
@@ -195,27 +212,26 @@
           </div>
           <div class="dossier reveal">
             <div class="dossier-left">
-              <h3>Example: Luxor Capital (LXR)</h3>
-              <p>
-                AI thesis: Defensive cash-flow with pricing power. Macro risk is
-                muted; valuation sits below long-term median.
+              <h3 id="dossier-title">Example: SPY.US</h3>
+              <p id="dossier-thesis">
+                Price behavior anchored to daily close with traceable sources.
               </p>
               <div class="bullet-grid">
                 <div>
                   <div class="label">Signal</div>
-                  <div class="value">Positive</div>
+                  <div class="value" id="dossier-signal">--</div>
                 </div>
                 <div>
                   <div class="label">Confidence</div>
-                  <div class="value">0.71</div>
+                  <div class="value" id="dossier-confidence">--</div>
                 </div>
                 <div>
                   <div class="label">Horizon</div>
-                  <div class="value">12 weeks</div>
+                  <div class="value" id="dossier-horizon">--</div>
                 </div>
                 <div>
                   <div class="label">Risk flag</div>
-                  <div class="value">Low</div>
+                  <div class="value" id="dossier-risk">--</div>
                 </div>
               </div>
               <button class="cta secondary">Read rationale</button>
@@ -228,16 +244,16 @@
               </div>
               <div class="metric-row">
                 <div>
-                  <div class="label">Revenue trend</div>
-                  <div class="value">+9.2% YoY</div>
+                  <div class="label">Last close</div>
+                  <div class="value" id="dossier-close">--</div>
                 </div>
                 <div>
-                  <div class="label">Cash flow</div>
-                  <div class="value">Stable</div>
+                  <div class="label">Day change</div>
+                  <div class="value" id="dossier-change">--</div>
                 </div>
                 <div>
-                  <div class="label">Valuation</div>
-                  <div class="value">Below median</div>
+                  <div class="label">Volume</div>
+                  <div class="value" id="dossier-volume">--</div>
                 </div>
               </div>
             </div>
@@ -372,6 +388,12 @@
                 Guardrails and audit logs ensure consistent, accountable output.
               </p>
             </div>
+          </div>
+          <div class="sources-panel card reveal">
+            <div class="card-title">Primary data sources</div>
+            <ul id="sources-list">
+              <li>Loading sources...</li>
+            </ul>
           </div>
         </div>
       </section>
