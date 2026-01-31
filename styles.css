@@ -145,6 +145,10 @@ body {
   align-items: center;
 }
 
+.hero-copy {
+  max-width: 520px;
+}
+
 .kicker {
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -153,16 +157,27 @@ body {
   margin-bottom: 12px;
 }
 
+.kicker::after {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: rgba(200, 169, 106, 0.5);
+  margin-top: 12px;
+}
+
 h1 {
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(2.5rem, 4vw, 3.8rem);
   margin-bottom: 16px;
   font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .lead {
   font-size: 1.05rem;
   color: rgba(14, 27, 42, 0.75);
+  max-width: 520px;
 }
 
 .hero-actions {
@@ -262,6 +277,7 @@ h1 {
 h2 {
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(2rem, 3vw, 2.8rem);
+  letter-spacing: 0.02em;
 }
 
 .market-tabs {
@@ -316,7 +332,19 @@ h2 {
 .card ul {
   list-style: none;
   display: grid;
-  gap: 8px;
+  gap: 10px;
+}
+
+.card ul li {
+  padding-left: 18px;
+  position: relative;
+}
+
+.card ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--champagne);
 }
 
 .heatmap {
