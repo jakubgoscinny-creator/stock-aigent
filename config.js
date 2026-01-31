@@ -1,1 +1,1 @@
-window.STOCK_AIGENT_API = "http://localhost:4000";
+window.STOCK_AIGENT_API = "https://stock-aigent-api.onrender.com";
