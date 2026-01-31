@@ -87,7 +87,16 @@ const updateSources = async () => {
     list.innerHTML = "";
     data.sources.forEach((source) => {
       const item = document.createElement("li");
-      item.textContent = `${source.name} - ${source.note}`;
+      const link = document.createElement("a");
+      link.href = source.url;
+      link.textContent = source.name;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      const note = document.createElement("span");
+      note.className = "muted small";
+      note.textContent = ` - ${source.note}`;
+      item.appendChild(link);
+      item.appendChild(note);
       list.appendChild(item);
     });
   } catch (error) {
