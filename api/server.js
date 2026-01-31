@@ -28,6 +28,14 @@ const toNumber = (value) => {
   return Number.isFinite(num) ? num : null;
 };
 
+let fetchFn = global.fetch || null;
+const getFetch = async () => {
+  if (fetchFn) return fetchFn;
+  const mod = await import("node-fetch");
+  fetchFn = mod.default;
+  return fetchFn;
+};
+
 const formatNumber = (value, digits = 2) =>
   value === null || value === undefined ? "--" : value.toFixed(digits);
 
@@ -67,7 +75,8 @@ const parseStooqCsv = (text) => {
 
 const fetchStooq = async (symbol) => {
   const url = `https://stooq.pl/q/d/l/?s=${symbol}&i=d`;
-  const response = await fetch(url, { headers: { "User-Agent": "stock-aigent" } });
+  const fetcher = await getFetch();
+  const response = await fetcher(url, { headers: { "User-Agent": "stock-aigent" } });
   if (!response.ok) throw new Error(`Stooq fetch failed: ${response.status}`);
   const text = await response.text();
   return parseStooqCsv(text);
@@ -75,7 +84,8 @@ const fetchStooq = async (symbol) => {
 
 const fetchUsdPln = async () => {
   const url = "https://api.nbp.pl/api/exchangerates/rates/A/USD/?format=json";
-  const response = await fetch(url, { headers: { "User-Agent": "stock-aigent" } });
+  const fetcher = await getFetch();
+  const response = await fetcher(url, { headers: { "User-Agent": "stock-aigent" } });
   if (!response.ok) throw new Error(`NBP fetch failed: ${response.status}`);
   const data = await response.json();
   const rate = data?.rates?.[0]?.mid ?? null;
@@ -96,20 +106,69 @@ const computeChangePct = (latest, prev) => {
   return ((latest.close - prev.close) / prev.close) * 100;
 };
 
+const getNthFromEnd = (rows, n) => {
+  if (!rows || rows.length < n) return null;
+  return rows[rows.length - n];
+};
+
+const computeChangeFrom = (latest, base) => {
+  if (!latest || !base || base.close === 0 || base.close === null) return null;
+  return ((latest.close - base.close) / base.close) * 100;
+};
+
+const buildMovers = async (symbols) => {
+  const results = await Promise.all(
+    symbols.map(async (symbol) => {
+      try {
+        const rows = await fetchStooq(symbol);
+        const { latest, prev } = getLastTwo(rows);
+        const changePct = computeChangePct(latest, prev);
+        return {
+          symbol: symbol.toUpperCase(),
+          close: latest?.close ?? null,
+          changePct,
+          date: latest?.date ?? null,
+        };
+      } catch (error) {
+        return null;
+      }
+    })
+  );
+  return results.filter((row) => row && row.changePct !== null);
+};
+
 const getMarketData = async () => {
   const now = Date.now();
   if (cache.data && now - cache.ts < CACHE_TTL_MS) return cache.data;
 
-  const [usRows, plRows, fx] = await Promise.all([
+  const usSymbols = ["spy.us", "aapl.us", "msft.us", "nvda.us", "amzn.us", "tsla.us"];
+  const plSymbols = ["wig20", "pkn.pl", "pko.pl", "kghm.pl", "pzu.pl", "peo.pl"];
+
+  const [usRows, plRows, fx, usMovers, plMovers] = await Promise.all([
     fetchStooq("spy.us"),
     fetchStooq("wig20"),
     fetchUsdPln(),
+    buildMovers(usSymbols),
+    buildMovers(plSymbols),
   ]);
 
   const us = getLastTwo(usRows);
   const pl = getLastTwo(plRows);
   const usChange = computeChangePct(us.latest, us.prev);
   const plChange = computeChangePct(pl.latest, pl.prev);
+  const usWeekBase = getNthFromEnd(usRows, 6);
+  const plWeekBase = getNthFromEnd(plRows, 6);
+  const usWeekChange = computeChangeFrom(us.latest, usWeekBase);
+  const plWeekChange = computeChangeFrom(pl.latest, plWeekBase);
+
+  const topMovers = {
+    us: usMovers
+      .sort((a, b) => Math.abs(b.changePct) - Math.abs(a.changePct))
+      .slice(0, 3),
+    pl: plMovers
+      .sort((a, b) => Math.abs(b.changePct) - Math.abs(a.changePct))
+      .slice(0, 3),
+  };
 
   const data = {
     updatedAt: us.latest?.date || pl.latest?.date || "--",
@@ -118,12 +177,16 @@ const getMarketData = async () => {
         symbol: "SPY.US",
         close: us.latest?.close ?? null,
         changePct: usChange,
+        weekChangePct: usWeekChange,
+        volume: us.latest?.volume ?? null,
         date: us.latest?.date ?? null,
       },
       pl: {
         symbol: "WIG20",
         close: pl.latest?.close ?? null,
         changePct: plChange,
+        weekChangePct: plWeekChange,
+        volume: pl.latest?.volume ?? null,
         date: pl.latest?.date ?? null,
       },
       fx: {
@@ -132,6 +195,7 @@ const getMarketData = async () => {
         date: fx.date,
       },
     },
+    topMovers,
     sources: SOURCES,
   };
 
@@ -150,8 +214,8 @@ app.get("/api/brief", async (req, res) => {
     const pl = data.metrics.pl;
     const fx = data.metrics.fx;
     const summary =
-      `SPY.US closed ${formatNumber(us.close)} (${formatPercent(us.changePct)}). ` +
-      `WIG20 closed ${formatNumber(pl.close)} (${formatPercent(pl.changePct)}). ` +
+      `SPY.US closed ${formatNumber(us.close)} (${formatPercent(us.changePct)} 1D, ${formatPercent(us.weekChangePct)} 1W). ` +
+      `WIG20 closed ${formatNumber(pl.close)} (${formatPercent(pl.changePct)} 1D, ${formatPercent(pl.weekChangePct)} 1W). ` +
       `USD/PLN ${formatNumber(fx.rate, 4)} (NBP).`;
 
     res.json({
@@ -160,6 +224,7 @@ app.get("/api/brief", async (req, res) => {
       title: "Selective strength, quality still leads",
       summary,
       metrics: data.metrics,
+      topMovers: data.topMovers,
       sources: data.sources,
     });
   } catch (error) {

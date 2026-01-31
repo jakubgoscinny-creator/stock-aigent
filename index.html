@@ -101,11 +101,13 @@
                 <div class="trust-label">SPY.US close</div>
                 <div class="trust-value" id="metric-us-close">--</div>
                 <div class="muted small" id="metric-us-change">--</div>
+                <div class="muted small" id="metric-us-week">--</div>
               </div>
               <div>
                 <div class="trust-label">WIG20 close</div>
                 <div class="trust-value" id="metric-pl-close">--</div>
                 <div class="muted small" id="metric-pl-change">--</div>
+                <div class="muted small" id="metric-pl-week">--</div>
               </div>
               <div>
                 <div class="trust-label">USD/PLN</div>
@@ -153,21 +155,37 @@
                   </ul>
                 </div>
                 <div class="card">
-                  <div class="card-title">Editorial highlights</div>
-                  <ul>
-                    <li>Quality factors remain favored</li>
-                    <li>Risk is concentrated, not systemic</li>
-                    <li>Macro drift stable, watch earnings breadth</li>
-                  </ul>
+                  <div class="card-title">Market snapshot</div>
+                  <div class="snapshot-grid">
+                    <div>
+                      <div class="label">Close</div>
+                      <div class="value" id="snapshot-us-close">--</div>
+                    </div>
+                    <div>
+                      <div class="label">1D</div>
+                      <div class="value" id="snapshot-us-1d">--</div>
+                    </div>
+                    <div>
+                      <div class="label">1W</div>
+                      <div class="value" id="snapshot-us-1w">--</div>
+                    </div>
+                    <div>
+                      <div class="label">Volume</div>
+                      <div class="value" id="snapshot-us-volume">--</div>
+                    </div>
+                    <div>
+                      <div class="label">Date</div>
+                      <div class="value" id="snapshot-us-date">--</div>
+                    </div>
+                  </div>
+                  <div class="source-note muted small">Source: Stooq (EOD)</div>
                 </div>
                 <div class="card">
-                  <div class="card-title">Opportunity set</div>
-                  <p class="muted">Three high-conviction opportunities</p>
-                  <div class="pill-row">
-                    <span class="pill">Cash-flow compounders</span>
-                    <span class="pill">Select AI infra</span>
-                    <span class="pill">Healthcare value</span>
-                  </div>
+                  <div class="card-title">Top movers (1D)</div>
+                  <ul id="movers-us">
+                    <li>Loading...</li>
+                  </ul>
+                  <div class="source-note muted small">Source: Stooq (EOD)</div>
                 </div>
               </div>
             </div>
@@ -182,21 +200,37 @@
                   </ul>
                 </div>
                 <div class="card">
-                  <div class="card-title">Editorial highlights</div>
-                  <ul>
-                    <li>Exporters benefit from FX stability</li>
-                    <li>Utilities offer resilience</li>
-                    <li>Selective growth in tech/logistics</li>
-                  </ul>
+                  <div class="card-title">Market snapshot</div>
+                  <div class="snapshot-grid">
+                    <div>
+                      <div class="label">Close</div>
+                      <div class="value" id="snapshot-pl-close">--</div>
+                    </div>
+                    <div>
+                      <div class="label">1D</div>
+                      <div class="value" id="snapshot-pl-1d">--</div>
+                    </div>
+                    <div>
+                      <div class="label">1W</div>
+                      <div class="value" id="snapshot-pl-1w">--</div>
+                    </div>
+                    <div>
+                      <div class="label">Volume</div>
+                      <div class="value" id="snapshot-pl-volume">--</div>
+                    </div>
+                    <div>
+                      <div class="label">Date</div>
+                      <div class="value" id="snapshot-pl-date">--</div>
+                    </div>
+                  </div>
+                  <div class="source-note muted small">Source: Stooq (EOD)</div>
                 </div>
                 <div class="card">
-                  <div class="card-title">Opportunity set</div>
-                  <p class="muted">Quiet compounding in quality names</p>
-                  <div class="pill-row">
-                    <span class="pill">Dividend leaders</span>
-                    <span class="pill">Selective tech</span>
-                    <span class="pill">Logistics</span>
-                  </div>
+                  <div class="card-title">Top movers (1D)</div>
+                  <ul id="movers-pl">
+                    <li>Loading...</li>
+                  </ul>
+                  <div class="source-note muted small">Source: Stooq (EOD)</div>
                 </div>
               </div>
             </div>

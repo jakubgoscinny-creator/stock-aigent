@@ -67,10 +67,40 @@ const updateBrief = async () => {
       const fx = data.metrics.fx || {};
       setText("metric-us-close", formatNumber(us.close));
       setText("metric-us-change", formatPercent(us.changePct));
+      setText("metric-us-week", `${formatPercent(us.weekChangePct)} 1W`);
       setText("metric-pl-close", formatNumber(pl.close));
       setText("metric-pl-change", formatPercent(pl.changePct));
+      setText("metric-pl-week", `${formatPercent(pl.weekChangePct)} 1W`);
       setText("metric-fx-rate", formatNumber(fx.rate, 4));
       setText("metric-fx-date", fx.date || "--");
+
+      setText("snapshot-us-close", formatNumber(us.close));
+      setText("snapshot-us-1d", formatPercent(us.changePct));
+      setText("snapshot-us-1w", formatPercent(us.weekChangePct));
+      setText("snapshot-us-volume", us.volume ? us.volume.toLocaleString() : "--");
+      setText("snapshot-us-date", us.date || "--");
+
+      setText("snapshot-pl-close", formatNumber(pl.close));
+      setText("snapshot-pl-1d", formatPercent(pl.changePct));
+      setText("snapshot-pl-1w", formatPercent(pl.weekChangePct));
+      setText("snapshot-pl-volume", pl.volume ? pl.volume.toLocaleString() : "--");
+      setText("snapshot-pl-date", pl.date || "--");
+    }
+
+    if (data.topMovers) {
+      const renderMovers = (listId, movers) => {
+        const list = document.getElementById(listId);
+        if (!list || !Array.isArray(movers)) return;
+        list.innerHTML = "";
+        movers.forEach((mover) => {
+          const item = document.createElement("li");
+          const text = `${mover.symbol} ${formatPercent(mover.changePct)} (close ${formatNumber(mover.close)})`;
+          item.textContent = text;
+          list.appendChild(item);
+        });
+      };
+      renderMovers("movers-us", data.topMovers.us);
+      renderMovers("movers-pl", data.topMovers.pl);
     }
   } catch (error) {
     // Silent fail for offline/static use.
