@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stock AIgent - Luxury Market Intelligence</title>
+    <meta
+      name="description"
+      content="A premium, AI-driven stock intelligence concierge for US and Warsaw markets."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="backdrop"></div>
+    <header class="site-header">
+      <div class="container nav">
+        <div class="brand">
+          <span class="brand-mark">SA</span>
+          <div>
+            <div class="brand-name">Stock AIgent</div>
+            <div class="brand-sub">Luxury market intelligence</div>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#brief">Brief</a>
+          <a href="#markets">Markets</a>
+          <a href="#dossier">Dossier</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#concierge">Concierge</a>
+          <a href="#pricing" class="cta-ghost">Private</a>
+        </nav>
+        <button class="cta">Request Private Brief</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="brief">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <p class="kicker">Morning Brief - US + Warsaw</p>
+            <h1>Clarity, not noise.</h1>
+            <p class="lead">
+              A premium AI concierge that curates the most meaningful market signals
+              and delivers a calm, data-backed narrative. No hype. Just signal.
+            </p>
+            <div class="hero-actions">
+              <button class="cta">Open Today Brief</button>
+              <button class="cta secondary">View Sample Report</button>
+            </div>
+            <div class="trust-row">
+              <div>
+                <div class="trust-label">Signal strength</div>
+                <div class="trust-value">Moderate</div>
+              </div>
+              <div>
+                <div class="trust-label">Confidence band</div>
+                <div class="trust-value">64% - 78%</div>
+              </div>
+              <div>
+                <div class="trust-label">Data freshness</div>
+                <div class="trust-value">EOD + live macro</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card reveal">
+            <div class="hero-card-header">
+              <span>AI Thesis</span>
+              <span class="chip" id="brief-updated">Updated 18:00 CET</span>
+            </div>
+            <h3 id="brief-title">Rates stable, earnings dispersion rising</h3>
+            <p id="brief-summary">
+              US large cap resilience contrasts with selective weakness in Warsaw
+              cyclicals. Our signals highlight quality cash-flow names and defensives.
+            </p>
+            <div class="signal-grid">
+              <div>
+                <div class="signal-name">US Momentum</div>
+                <div class="signal-value">+0.42</div>
+              </div>
+              <div>
+                <div class="signal-name">GPW Risk</div>
+                <div class="signal-value">-0.31</div>
+              </div>
+              <div>
+                <div class="signal-name">Macro Drift</div>
+                <div class="signal-value">Stable</div>
+              </div>
+            </div>
+            <div class="hero-card-footer">
+              <span class="muted">Rationale available</span>
+              <button class="link">Open report</button>
+            </div>
+          </div>
+          <div class="hero-strip reveal">
+            <div>
+              <div class="trust-label">FX-aware</div>
+              <div class="trust-value">USD / PLN</div>
+            </div>
+            <div>
+              <div class="trust-label">Market hours</div>
+              <div class="trust-value">NY + Warsaw</div>
+            </div>
+            <div>
+              <div class="trust-label">Provenance</div>
+              <div class="trust-value">Cited sources</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="markets">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="kicker">Markets</p>
+            <h2>US and Warsaw, balanced with discretion.</h2>
+          </div>
+          <div class="market-tabs reveal" role="tablist">
+            <button class="tab active" data-market="us">US Market</button>
+            <button class="tab" data-market="pl">Warsaw (GPW)</button>
+          </div>
+          <div class="market-panels">
+            <div class="market-panel active" data-market-panel="us">
+              <div class="market-grid">
+                <div class="card">
+                  <div class="card-title">Macro drivers</div>
+                  <ul>
+                    <li>Rates pause, inflation still sticky</li>
+                    <li>AI capex resilient in large tech</li>
+                    <li>Energy volatility contained</li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <div class="card-title">Signal map</div>
+                  <div class="heatmap">
+                    <div class="heat light">Quality</div>
+                    <div class="heat">Cyclicals</div>
+                    <div class="heat warm">Defensives</div>
+                    <div class="heat">Small cap</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-title">Opportunity set</div>
+                  <p class="muted">Three high-conviction opportunities</p>
+                  <div class="pill-row">
+                    <span class="pill">Cash-flow compounders</span>
+                    <span class="pill">Select AI infra</span>
+                    <span class="pill">Healthcare value</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="market-panel" data-market-panel="pl">
+              <div class="market-grid">
+                <div class="card">
+                  <div class="card-title">Macro drivers</div>
+                  <ul>
+                    <li>FX stability supports exporters</li>
+                    <li>Rates likely to ease slowly</li>
+                    <li>Domestic consumption resilient</li>
+                  </ul>
+                </div>
+                <div class="card">
+                  <div class="card-title">Signal map</div>
+                  <div class="heatmap">
+                    <div class="heat">Banks</div>
+                    <div class="heat warm">Utilities</div>
+                    <div class="heat light">Exporters</div>
+                    <div class="heat">Small cap</div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-title">Opportunity set</div>
+                  <p class="muted">Quiet compounding in quality names</p>
+                  <div class="pill-row">
+                    <span class="pill">Dividend leaders</span>
+                    <span class="pill">Selective tech</span>
+                    <span class="pill">Logistics</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="dossier">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="kicker">Stock Dossier</p>
+            <h2>Numbers and narrative in one frame.</h2>
+          </div>
+          <div class="dossier reveal">
+            <div class="dossier-left">
+              <h3>Example: Luxor Capital (LXR)</h3>
+              <p>
+                AI thesis: Defensive cash-flow with pricing power. Macro risk is
+                muted; valuation sits below long-term median.
+              </p>
+              <div class="bullet-grid">
+                <div>
+                  <div class="label">Signal</div>
+                  <div class="value">Positive</div>
+                </div>
+                <div>
+                  <div class="label">Confidence</div>
+                  <div class="value">0.71</div>
+                </div>
+                <div>
+                  <div class="label">Horizon</div>
+                  <div class="value">12 weeks</div>
+                </div>
+                <div>
+                  <div class="label">Risk flag</div>
+                  <div class="value">Low</div>
+                </div>
+              </div>
+              <button class="cta secondary">Read rationale</button>
+            </div>
+            <div class="dossier-right">
+              <div class="chart-frame">
+                <div class="chart-title">Signal trajectory</div>
+                <div class="chart-placeholder"></div>
+                <div class="chart-note">Confidence band visible</div>
+              </div>
+              <div class="metric-row">
+                <div>
+                  <div class="label">Revenue trend</div>
+                  <div class="value">+9.2% YoY</div>
+                </div>
+                <div>
+                  <div class="label">Cash flow</div>
+                  <div class="value">Stable</div>
+                </div>
+                <div>
+                  <div class="label">Valuation</div>
+                  <div class="value">Below median</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="portfolio">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="kicker">Portfolio Studio</p>
+            <h2>Luxury risk control, effortless overview.</h2>
+          </div>
+          <div class="portfolio-grid reveal">
+            <div class="card">
+              <div class="card-title">Allocation rings</div>
+              <div class="rings">
+                <div class="ring ring-one"></div>
+                <div class="ring ring-two"></div>
+                <div class="ring ring-three"></div>
+              </div>
+              <p class="muted">Balanced risk across quality and defensives.</p>
+            </div>
+            <div class="card">
+              <div class="card-title">Scenario view</div>
+              <div class="scenario">
+                <div class="scenario-bar"><span>Base</span><div class="bar base"></div></div>
+                <div class="scenario-bar"><span>Bull</span><div class="bar bull"></div></div>
+                <div class="scenario-bar"><span>Bear</span><div class="bar bear"></div></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Risk bands</div>
+              <div class="risk-bands">
+                <span>Low</span><span>Moderate</span><span>High</span>
+              </div>
+              <p class="muted">Confidence bands shown for each position.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="concierge">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="kicker">AI Concierge</p>
+            <h2>Private, calm, and citation-first.</h2>
+          </div>
+          <div class="concierge reveal">
+            <div class="chat">
+              <div class="bubble user">Show me Warsaw signals with low risk.</div>
+              <div class="bubble ai">
+                Here are three GPW names with low risk flags. Sources and rationale
+                are attached in the dossier.
+              </div>
+              <div class="bubble ai muted">No action required today.</div>
+            </div>
+            <div class="card concierge-card">
+              <div class="card-title">Weekly Private Brief</div>
+              <p>
+                A refined report with macro context, portfolio drift, and measured
+                opportunities. Exportable as a PDF.
+              </p>
+              <button class="cta secondary">Request sample</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="trust">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="kicker">Trust & Compliance</p>
+            <h2>Elegance backed by traceable data.</h2>
+          </div>
+          <div class="portfolio-grid reveal">
+            <div class="card">
+              <div class="card-title">Provenance</div>
+              <p class="muted">
+                Every AI insight links to its underlying sources and time-stamped
+                data lineage.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-title">Guardrails</div>
+              <p class="muted">
+                No explicit trade commands. Confidence bands highlight uncertainty.
+              </p>
+            </div>
+            <div class="card">
+              <div class="card-title">Privacy</div>
+              <p class="muted">
+                Portfolio data encrypted at rest with role-based access controls.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="kicker">Pricing</p>
+            <h2>Discreet tiers for every level of intent.</h2>
+          </div>
+          <div class="pricing-grid reveal">
+            <div class="card">
+              <div class="card-title">Essential</div>
+              <h3>Daily Brief</h3>
+              <p class="muted">US + Warsaw, watchlists, daily signal map.</p>
+              <button class="cta secondary">Select</button>
+            </div>
+            <div class="card highlight">
+              <div class="card-title">Premium</div>
+              <h3>Concierge</h3>
+              <p class="muted">AI concierge, weekly reports, advanced alerts.</p>
+              <button class="cta">Select</button>
+            </div>
+            <div class="card">
+              <div class="card-title">Private</div>
+              <h3>Bespoke</h3>
+              <p class="muted">Personal briefings, custom research threads.</p>
+              <button class="cta secondary">Request</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="access">
+        <div class="container">
+          <div class="cta-banner reveal">
+            <div>
+              <p class="kicker">Private Access</p>
+              <h2>Request a bespoke briefing.</h2>
+              <p class="muted">
+                We respond within one business day with a curated sample report.
+              </p>
+            </div>
+            <form class="cta-form">
+              <input type="email" placeholder="you@firm.com" aria-label="Email" />
+              <button class="cta">Request access</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="brand-name">Stock AIgent</div>
+          <p class="muted">Luxury market intelligence for the discreet investor.</p>
+        </div>
+        <div class="footer-note">
+          <p class="muted">Disclosures: This product is informational only.</p>
+          <p class="muted">No investment advice. Confidence bands show uncertainty.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

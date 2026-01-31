@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: stock-aigent-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    rootDir: api
